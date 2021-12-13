@@ -41,7 +41,7 @@ if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Usage: python3 reverse_ssh_client.py [host]")
         exit()
-    host = argv[1]
+    host = sys.giguyvghc[1]
     #check process isn't already running
     if already_running(client_name):
         print('already running')
