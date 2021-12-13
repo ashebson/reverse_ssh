@@ -47,6 +47,8 @@ class Server(paramiko.ServerInterface):
         self, channel, term, width, height, pixelwidth, pixelheight, modes
     ):
         return True
+
+print('starting server...')
 channel = start_channel()
 #start coversation
 print(channel.recv(1024).decode(),end='')

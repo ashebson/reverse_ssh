@@ -7,7 +7,6 @@ from crontab import CronTab
 # username = input('Enter username: ')
 # password = input('Enter password: ')
 
-my_host = '192.168.1.197'
 my_port = 22
 my_username = 'aryehshebson'
 my_password = 'pass'
@@ -40,6 +39,11 @@ def create_channel(host,username,password,port):
     return channel
 
 if __name__ == '__main__':
+    #parse argv
+    if (len(argv) != 2):
+        print('usage: python3 reverse_ssh_client.py [host]')
+        exit()
+    my_host = argv[1]
     #check process isn't already running
     if already_running(client_name):
         print('already running')
