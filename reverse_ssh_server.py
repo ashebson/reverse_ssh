@@ -3,7 +3,7 @@ import socket
 import threading
 def start_channel():
     # Define authentication key
-    #key = paramiko.RSAKey(filename='server_key.key')
+    key = paramiko.RSAKey(filename='server_key.key')
     # authenticate client
     auth_sock = socket.socket()
     auth_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # stop the os from yelling about the port
@@ -23,7 +23,7 @@ class Server(paramiko.ServerInterface):
     def __init__(self):
         self.event = threading.Event()
 
-    username = 'aryeh'
+    username = 'aryehshebson'
     password = 'pass'
 
     def check_channel_request(self, kind, chanid):
