@@ -38,7 +38,7 @@ def create_channel(host,username,password,port):
 
 if __name__ == '__main__':
     #parse argv
-    if len(argv) != 2:
+    if len(sys.argv) != 2:
         print("Usage: python3 reverse_ssh_client.py [host]")
         exit()
     host = argv[1]
